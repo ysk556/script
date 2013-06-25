@@ -3,7 +3,7 @@
 " An example for a Japanese version gvimrc file.
 " 日本語版のデフォルトGUI設定ファイル(gvimrc) - Vim7用試作
 "
-" Last Change: 20-Jun-2013.
+" Last Change: 25-Jun-2013.
 " Maintainer:  MURAOKA Taro <koron.kaoriya@gmail.com>
 "
 " 解説:
@@ -180,6 +180,27 @@ endif
 " Copyright (C) 2011 KaoriYa/MURAOKA Taro
 
 " add by sawa
+" Windowsのvimfilesを.vimに変更する
+if has('win32')
+  set runtimepath^=$HOME/.vim
+  set runtimepath+=$HOME/.vim/after
+endif
+
+filetype plugin indent off
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/neobundle/neobundle.vim
+  call neobundle#rc(expand('~/.vim/neobundle'))
+endif
+
+"NeoBundleで管理するプラグイン
+NeoBundle 'https://github.com/Shougo/neobundle.vim.git'
+NeoBundle 'https://github.com/Shougo/neocomplcache.vim.git'
+NeoBundle 'https://github.com/Shougo/unite.vim.git'
+NeoBundle 'https://github.com/Shougo/vimfiler.vim.git'
+NeoBundle 'https://github.com/mattn/zencoding-vim.git'
+NeoBundle 'https://github.com/tpope/vim-surround.git'
+
 filetype plugin indent on
 " 行番号を表示する
 set number
@@ -250,22 +271,6 @@ set tw=0
 set formatoptions=q
 " カーソル行をハイライトする
 set cursorline
-" Vundleによるプラグイン管理
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
-
-" original repos on github
-Bundle 'mattn/zencoding-vim'
-Bundle 'tpope/vim-surround'
-Bundle 'Shougo/neocomplcache'
-Bundle 'tomasr/molokai'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'altercation/solarized'
-
-filetype plugin indent on
 " Alignを日本語環境で使用するための設定
 :let g:Align_xstrlen = 3
 
