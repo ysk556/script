@@ -265,6 +265,59 @@ nnoremap l <Right>zv
 "----------------------------------------
 " Vimスクリプト
 "----------------------------------------
+
+"----------------------------------------
+" 個別設定
+"----------------------------------------
+" ビジュアルモードで選択したテキストがクリップボードに入る
+set guioptions+=a
+" シンタックスの色付け
+syntax enable
+" バックアップファイルを作るディレクトリ
+"set backupdir=$VIM/vimbackup
+" ファイル保存ダイアログの初期ディレクトリをバッファファイル位置に設定
+"set browsedir=buffer
+" クリップボードをWindowsと連携
+"set clipboard+=unnamed
+" GUI版でない場合は、こちらの設定を追加する。
+set clipboard+=autoselect
+" タブを空白文字4つに変換
+set ts=4
+" 変更中のファイルでも、保存しないで他のファイルを表示
+set hidden
+" インクリメンタルサーチを行う
+set incsearch
+" タブ文字など不可視文字を表示する
+"set list
+" listで表示される文字のフォーマットを指定する
+"set listchars=tab:>-,extends:<,trail:-
+" 検索時に大文字、小文字を区別しない
+" 検索をファイルの先頭へループしない
+set nowrapscan
+" gvimをタブエディタ化する。（タブページのラベルを常に表示）
+set showtabline=2
+" ESC連打でハイライトの色を消す
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+" メニュー表示を削除する
+"set guioptions-=m
+" ツールバーを非表示にする
+"set guioptions-=T
+" 常に開いているファイルと同じディレクトリをカレントディレクトリにする
+au BufEnter * execute ":lcd " .expand("%:p:h")
+" vimを開いたときに最大化する
+"au GUIEnter * simalt ~x
+" 自動改行をしない
+set tw=0
+set formatoptions=q
+" カーソル行をハイライトする
+set cursorline
+" Alignを日本語環境で使用するための設定
+:let g:Align_xstrlen = 3
+
+" vimrcのオープンと再読み込み
+" 暫定キーマッピング
+"nnoremap ,v :<C-u>tabnew ~/vim73/gvimrc<CR>
+"nnoremap <F2> :<C-u>source ~/vim73/gvimrc<CR>
 """"""""""""""""""""""""""""""
 " ファイルを開いたら前回のカーソル位置へ移動
 " $VIMRUNTIME/vimrc_example.vim
@@ -364,6 +417,9 @@ call neobundle#rc(expand('$VIM/vimfiles/bundle/'))
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/vimfiler'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'vim-scripts/Align'
 
 filetype plugin indent on
 
